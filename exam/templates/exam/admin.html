@@ -1,0 +1,25 @@
+<html>
+<head>This is admin Side </head>
+<title>Exam Portal Admin</title>
+
+<form action="" method="POST">
+<label>Select Sem</label>
+
+<select name="Sem" id="Sem" >
+    <option value="default">None</option>
+{%for a in subject%}
+    <option value="{{a.id}}" onclick="subject()">{{a.semester}}</option>
+{%endfor%}    
+</select>
+<script>
+function subject() 
+{ 
+var x = document.getElementById("Sem");
+var text =  x.options[x.selectedIndex].text; 
+console.log(text) ;
+}
+</script>
+
+</form>
+
+</html>
