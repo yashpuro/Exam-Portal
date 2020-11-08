@@ -15,10 +15,20 @@ def admin(request):
     context = {"subject":sub ,  "question":ques , "choice":choice}
     template = loader.get_template('exam/admin.html')
     return HttpResponse(template.render(context, request))
+   
 
 
-def SubjectViewSet(ModelViewSet, pk):
-    queryset = Subject.objects.filter(semester=pk).values()
+def SubjectViewSet(ModelViewSet, pk , stream):
+    queryset = Subject.objects.filter(semester=pk , stream = stream).values()
     serializer_class =  SubjectSerializer(queryset, many=True)
-    #permisssion_classes = [permissions.IsAuthenticated] 
-    return JsonResponse(serializer_class.data, safe=False)    
+    return JsonResponse(serializer_class.data, safe=False)  
+
+def QuestionViewSet(ModelViewSet, pk ):
+    queryset = Question.objects.filter(pk=pk)
+    serializer_class =  QuestionSerializer(queryset, many=True)
+    return JsonResponse(serializer_class.data, safe=False) 
+
+def AnswerViewSet(ModelViewSet, pk ):
+    queryset = Choice.objects.filter(question=pk)
+    serializer_class =  AnswerSerializer(queryset, many=True)
+    return JsonResponse(serializer_class.data, safe=False)     
