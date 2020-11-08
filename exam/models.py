@@ -1,7 +1,7 @@
 from django.db import models
 from django.http import HttpResponse
 
-# Create your models here.
+
 
 class Subject(models.Model):
     subject_name = models.CharField(max_length=200)
